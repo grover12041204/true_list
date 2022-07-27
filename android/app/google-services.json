@@ -1,0 +1,154 @@
+{
+  "project_info": {
+    "project_number": "798616649374",
+    "project_id": "true-list",
+    "storage_bucket": "true-list.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798616649374:android:c76074cd068f8d4d95458f",
+        "android_client_info": {
+          "package_name": "com.example.firebase_chat_example"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDj76Jh9N7trp8JqLAg_J7dWPx3-tF31s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "798616649374-vimghc19jbt6lbrtvq1ua5cte0mpjujv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseChatExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798616649374:android:24a46be280dd5fc595458f",
+        "android_client_info": {
+          "package_name": "com.example.true_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDj76Jh9N7trp8JqLAg_J7dWPx3-tF31s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "798616649374-vimghc19jbt6lbrtvq1ua5cte0mpjujv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseChatExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798616649374:android:b6501edf4e52de0195458f",
+        "android_client_info": {
+          "package_name": "com.example.true_list2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDj76Jh9N7trp8JqLAg_J7dWPx3-tF31s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "798616649374-vimghc19jbt6lbrtvq1ua5cte0mpjujv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseChatExample"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798616649374:android:18cc0b5f7f3db2ea95458f",
+        "android_client_info": {
+          "package_name": "com.example.true_list_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDj76Jh9N7trp8JqLAg_J7dWPx3-tF31s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798616649374-v21k2diogv26qa5ke5pbjfsrkcmiccio.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "798616649374-vimghc19jbt6lbrtvq1ua5cte0mpjujv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.firebaseChatExample"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
