@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
+import 'package:true_list/sujith/Models/Constants.dart';
 
 //Providers
 import '../providers/authentication_provider.dart';
@@ -74,16 +75,41 @@ class _UsersPageState extends State<UsersPage> {
               //   //   },
               //   // ),
               // ),
-              CustomTextField(
-                onEditingComplete: (_value) {
-                  _pageProvider.getUsers(name: _value);
-                  FocusScope.of(context).unfocus();
-                },
+              // CustomTextField(
+              //   onEditingComplete: (_value) {
+              //     _pageProvider.getUsers(name: _value);
+              //     FocusScope.of(context).unfocus();
+              //   },
+              //   hintText: "Search...",
+              //   //alignment: Alignment.centerLeft,
+              //   obscureText: false,
+              //   controller: _searchFieldTextEditingController,
+              //   icon: Icons.search,
+              // ),
+              // SizedBox(height: 20,),
+              TextFormField(
+              onEditingComplete: (){
+                _pageProvider.getUsers(name: _searchFieldTextEditingController.text);
+                FocusScope.of(context).unfocus();
+              },
+             style: TextStyle(color: appBackGroundcolor),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                
+                border: OutlineInputBorder(
+                  borderRadius:BorderRadius.circular(10),
+                  // borderSide: BorderSide.none
+                  borderSide: BorderSide(color: Colors.white)
+                ),
                 hintText: "Search...",
-                obscureText: false,
-                controller: _searchFieldTextEditingController,
-                icon: Icons.search,
+                hintStyle: TextStyle(color: appBackGroundcolor),
+                prefixIcon: const Icon(Icons.search,color: Colors.black,),
+                
+               ), 
+              controller: _searchFieldTextEditingController, 
               ),
+
               _usersList(),
               _createChatButton(),
             ],

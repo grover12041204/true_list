@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:true_list/global_variables.dart';
+import 'package:true_list/sujith/Models/Constants.dart';
 
 //Widgets
 import '../widgets/top_bar.dart';
@@ -15,6 +16,9 @@ import '../models/chat_message.dart';
 //Providers
 import '../providers/authentication_provider.dart';
 import '../providers/chat_page_provider.dart';
+
+
+import 'package:sizer/sizer.dart';
 
 class ChatPage extends StatefulWidget {
   final Chat chat;
@@ -56,7 +60,7 @@ class _ChatPageState extends State<ChatPage> {
               this.widget.chat.uid, _auth, _messagesListViewController),
         ),
       ],
-      child: _buildUI(),
+      child:_buildUI2()
     );
   }
 
@@ -65,6 +69,7 @@ class _ChatPageState extends State<ChatPage> {
       builder: (BuildContext _context) {
         _pageProvider = _context.watch<ChatPageProvider>();
         return Scaffold(
+          backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.symmetric(
@@ -113,6 +118,40 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
+  Widget _buildUI2() {
+    return Builder(builder: (BuildContext _context) {
+        _pageProvider = _context.watch<ChatPageProvider>();
+        return Scaffold(
+          appBar: AppBar(
+            title:Text(this.widget.chat.title()),
+            backgroundColor: appBackGroundcolor,
+            elevation: 0,
+            actions: [
+              IconButton(
+                icon: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                  // color: Color.fromRGBO(0, 82, 218, 1.0),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  _pageProvider.deleteChat();
+                },
+              ),
+            ],
+          ),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                _messagesListView(),
+                _sendMessageForm(),
+                // _textField(),
+              ],
+            ),
+          ),
+        );
+        });}
+
   Widget _messagesListView() {
     if (_pageProvider.messages != null) {
       if (_pageProvider.messages!.length != 0) {
@@ -125,6 +164,7 @@ class _ChatPageState extends State<ChatPage> {
               ChatMessage _message = _pageProvider.messages![_index];
               bool _isOwnMessage = _message.senderID == mongoId;
               return Container(
+                color: Colors.white,
                 child: CustomChatListViewTile(
                   deviceHeight: _deviceHeight,
                   width: _deviceWidth * 0.80,
@@ -185,6 +225,7 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
+  
 
   Widget _messageTextField() {
     return SizedBox(
@@ -238,4 +279,59 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
+
+  Widget _textField(){
+    return Container(
+      // height: 7.h,
+     
+      margin: EdgeInsets.only(top :2.h,left: 2.w,right: 2.w),
+      width: MediaQuery.of(context).size.width,
+    color: Colors.white,
+    child: SafeArea(
+      child: Row(
+        children: [
+          SizedBox(width: 3.w,),
+          Icon(
+            Icons.sentiment_satisfied_alt_outlined
+          ),
+           SizedBox(width: 3.w,),
+          Expanded(child: 
+          TextField(
+            // controller: _controller,
+            decoration: InputDecoration(
+            
+              hintText: "Type message",
+              border: InputBorder.none,
+            ),
+          // onSubmitted: (value) async{
+          //     _controller.clear();
+          //     socket.emit('message', value);
+
+          // },
+          
+          onSubmitted: (_value){
+              _pageProvider.message = _value; 
+              // _messageFormState.currentState!.save();
+              // _pageProvider.sendTextMessage();
+              // _messageFormState.currentState!.reset();
+          },
+          ),
+      
+          ),
+          Icon(Icons.attach_file),
+          // SizedBox(width: 3.w,),
+          IconButton(onPressed: () {
+             _messageFormState.currentState!.save();
+              _pageProvider.sendTextMessage();
+              _messageFormState.currentState!.reset();
+          }, icon: Icon(Icons.camera_alt),),
+          
+          // SizedBox(width: 3.w,),
+        ],
+      ),
+    )
+      
+      );
+  }
+
 }

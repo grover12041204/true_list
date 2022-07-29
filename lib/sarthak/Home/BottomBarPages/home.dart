@@ -6,15 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:true_list/sarthak/Home/home_search.dart';
 import 'package:true_list/sarthak/categories.dart';
 import 'package:true_list/screens/account_settings/new_home_screen.dart';
-import 'package:true_list/sujith/Accounts/buy_credits/category_BottomSheet.dart';
-
+import 'package:true_list/screens/post_data/post_detail_data.dart';
 import '../../../global_variables.dart';
 import '../../cards/card_landscape.dart';
 import '../../cards/category.dart';
 import '../../cards/gridview.dart';
 import 'package:http/http.dart' as http;
+
+import '../../cards/showPremiumadd.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -40,79 +42,59 @@ class _HomeState extends State<Home> {
   //           ),
   //         ));
   int current_index = 0;
-  List<String> name = [
-    "Posh Villa A for Sale",
-    "Posh Villa B for Sale",
-    "Posh Villa C for Sale",
-    "Posh Villa D for Sale",
-    "Posh Villa E for Sale",
-    "Posh Villa F for Sale",
-  ];
+
   List<String> image_name = ["car", "building", "grafiti", "laptop", "clothes"];
-  List<double> heights = [
-    50,
-    50,
-    50,
-    50,
-    50,
-  ];
-  List<double> widths = [
-    50,
-    60,
-    50,
-    60,
-    50,
-  ];
+
   int category_index = 0;
-  List<String> category_name = [
-    "Vehicles",
-    "Housing",
-    "Arts",
-    "Electronics",
-    "Fashion"
-  ];
+
   List<Widget> grids = List.empty(growable: true);
   List<Widget> containers = List.empty(growable: true);
-  int grids_count = 50;
   int rows = 1;
 
   @override
   initState() {
     super.initState();
-    rows = ((globalPremiumadData[0]['PremiumAds'].length +
-                globalPremiumadData[0]['RecentAds'].length) /
-            9)
-        .toInt();
-    for (var i = 0; i < rows; i++) {
-      grids.add(CustomGrid(count: 9));
-      containers.add(Container(
-        height: 100,
-        width: double.maxFinite,
-        color: Colors.white12,
-        child: Center(
-          child: Text(
-            "Google Ad",
-            style: GoogleFonts.poppins(fontSize: 15),
-          ),
-        ),
-      ));
-    }
+    // rows = ((globalPremiumadData[0]['PremiumAds'].length +
+    //             globalPremiumadData[0]['RecentAds'].length) /
+    //         9)
+    //     .toInt();
+    // for (var i = 0; i < rows; i++) {
+    //   grids.add(CustomGrid(count: 9));
+    //   containers.add(Container(
+    //     height: 100,
+    //     width: double.maxFinite,
+    //     color: Colors.white12,
+    //     child: Center(
+    //       child: Text(
+    //         "Google Ad",
+    //         style: GoogleFonts.poppins(fontSize: 15),
+    //       ),
+    //     ),
+    //   ));
+    // }
     // grids.fillRange(0,rows,CustomGrid(count: 9));
-    if (grids_count % 9 != 0) {
-      grids.add(CustomGrid(count: grids_count % 9));
-      containers.add(Container(
-        height: 100,
-        width: double.maxFinite,
-        color: Colors.white12,
-        child: Center(
-          child: Text(
-            "Google Ad",
-            style: GoogleFonts.poppins(fontSize: 15),
-          ),
-        ),
-      ));
-      rows += 1;
-    }
+    // if ((globalPremiumadData[0]['PremiumAds'].length +
+    //             globalPremiumadData[0]['RecentAds'].length) %
+    //         9 !=
+    //     0) {
+    //   grids.add(CustomGrid(
+    //       count: (globalPremiumadData[0]['PremiumAds'].length +
+    //               globalPremiumadData[0]['RecentAds'].length) %
+    //           9));
+    //   // containers.add(Container(
+    //   //   height: 100,
+    //   //   width: double.maxFinite,
+    //   //   color: Colors.white12,
+    //   //   child: Center(
+    //   //     child: Text(
+    //   //       "Google Ad",
+    //   //       style: GoogleFonts.poppins(fontSize: 15),
+    //   //     ),
+    //   //   ),
+    //   // ),
+    //   // );
+    //   rows += 1;
+    // }
     // Add listeners to this class
   }
 
@@ -147,8 +129,12 @@ class _HomeState extends State<Home> {
                             size: 18,
                           ),
                           onTap: () async {
-                            var res = await Navigator.pushNamed(
-                                context, '/home_search');
+                            var res = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => HomeSearch(),
+                              ),
+                            );
                             setState(() {
                               current_text = res
                                   .toString()
@@ -196,20 +182,21 @@ class _HomeState extends State<Home> {
                             child: Icon(Icons.search,
                                 color: Colors.white, size: 22),
                             onTap: () {
-                              setState(() {
-                                // if(gridItems.length % 9 == 0 && gridItems.length >=18)
-                                //   {
-                                //     containers.add(Container(
-                                //       height: 100,
-                                //       width: double.maxFinite,
-                                //       color: Colors.white12,
-                                //       child: Center(child: Text(" Google Ad",style: GoogleFonts.poppins(fontSize: 15),
-                                //       ),
-                                //       ),
-                                //     ));
-                                //   }
-                                // gridItems.add(CardPortrait(name: "Posh Villa", price: "345", distance: "65", isPremium: false));
-                              });
+                              // setState(() {
+
+                              //   // if(gridItems.length % 9 == 0 && gridItems.length >=18)
+                              //   //   {
+                              //   //     containers.add(Container(
+                              //   //       height: 100,
+                              //   //       width: double.maxFinite,
+                              //   //       color: Colors.white12,
+                              //   //       child: Center(child: Text(" Google Ad",style: GoogleFonts.poppins(fontSize: 15),
+                              //   //       ),
+                              //   //       ),
+                              //   //     ));
+                              //   //   }
+                              //   // gridItems.add(CardPortrait(name: "Posh Villa", price: "345", distance: "65", isPremium: false));
+                              // });
                             },
                           ),
                         ),
@@ -250,7 +237,7 @@ class _HomeState extends State<Home> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: const EdgeInsets.only(top: 30.0, left: 23),
                       child: Text(
                         "Premium Ads",
@@ -263,12 +250,22 @@ class _HomeState extends State<Home> {
                     Row(
                       children: [
                         Spacer(),
-                        Text(
-                          "Show all",
-                          style: GoogleFonts.poppins(
-                              color: HexColor("#A9ACB8"),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FullPremiumadList(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Show all",
+                            style: GoogleFonts.poppins(
+                                color: HexColor("#A9ACB8"),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500),
+                          ),
                         ),
                         Icon(
                           Icons.arrow_forward_ios_outlined,
@@ -299,9 +296,11 @@ class _HomeState extends State<Home> {
                       padding: EdgeInsets.only(left: 17),
                       child: CarouselSlider(
                         items: List.generate(
-                            globalPremiumadData[0]['PremiumAds'].length - 1,
+                            globalPremiumadData[0]['PremiumAds'].length,
                             (index) => InkWell(
                                   onTap: () {
+                                    print(globalPremiumadData[0]['PremiumAds']
+                                        [index]['title']);
                                     print(index);
                                     print(globalPremiumadData[0]['PremiumAds']
                                         [index]['_id']);
@@ -338,8 +337,7 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: EdgeInsets.only(left: width * 0.35),
                       child: DotsIndicator(
-                        dotsCount:
-                            globalPremiumadData[0]['PremiumAds'].length - 1,
+                        dotsCount: globalPremiumadData[0]['PremiumAds'].length,
                         position: current_index.toDouble(),
                         decorator: DotsDecorator(
                             color: HexColor("#D9D9D9"),
@@ -394,14 +392,13 @@ class _HomeState extends State<Home> {
                         physics: BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: false,
-                        itemCount: 5,
+                        itemCount: json['Category'].length,
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             child: Categorywidget(
-                              image_name: image_name[index],
-                              name: category_name[index],
-                              height: heights[index],
-                              width: widths[index],
+                              image_name:
+                                  index < 4 ? image_name[index] : image_name[1],
+                              name: json['Category'][index],
                             ),
                             onTap: () {
                               setState(() {
@@ -433,8 +430,10 @@ class _HomeState extends State<Home> {
                       itemBuilder: (context, index) {
                         return Column(
                           children: [
-                            grids[index],
-                            containers[index],
+                            CustomGrid(
+                                count: globalPremiumadData[0]['PremiumAds']
+                                        .length +
+                                    globalPremiumadData[0]['RecentAds'].length),
                           ],
                         );
                       },
@@ -480,8 +479,7 @@ class _HomeState extends State<Home> {
   //   }
   // }
   Map<String, String> requestHeaders = {
-    'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3Bob25lTnVtYmVyIjoiOTQ2MjQ0NTg5MyIsInVzZXJfSUQiOiI2MmRhNDNjYzE4MDkxNDZjMDRkM2UwZTgiLCJpYXQiOjE2NTg4OTY0MDQsImV4cCI6MTY1ODk4MjgwNH0.zw65synT2RelIhkdJbMU4KdPr1DUg8EFLmQJ5RnbySs',
+    'Authorization': 'Bearer ${globalToken}',
     'Content-type': 'application/json',
     'Accept': 'application/json',
   };
@@ -489,6 +487,7 @@ class _HomeState extends State<Home> {
   getHomeScreen(String id) async {
     try {
       print('inside block');
+      print(globalToken);
       var response = await http.post(
           Uri.parse(
             "https://deep-nucleus1.azurewebsites.net/api/v1/get-particular-ad-details",
@@ -501,8 +500,6 @@ class _HomeState extends State<Home> {
 
       globalGetHomeScreen = decodeJsom;
       print(decodeJsom);
-      print(decodeJsom['message']);
-      print(decodeJsom['AdDetails'][0]['image_url']);
       // print(globalGetHomeScreen['image_url'][0]);
       // print(decodeJsom[0]['PremiumAds']);
       // print('data');

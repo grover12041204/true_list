@@ -11,7 +11,9 @@ import 'package:true_list/Chat/pages/home_page.dart';
 import 'package:true_list/global_variables.dart';
 import 'package:true_list/sarthak/Home/BottomBarPages/home.dart';
 import 'package:true_list/screens/post_screens/post_photo_screen.dart';
+import 'package:true_list/sujith/Accounts/Screens/Accounts_page.dart';
 
+import '../../sujith/Accounts/Screens/favourite.dart';
 import '../cards/card_landscape.dart';
 import '../cards/gridview.dart';
 import 'package:http/http.dart' as http;
@@ -81,13 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
   int category_index = 0;
   List<Widget> screens = [
     Home(),
-    Center(child: Text("Favourite")),
+    favourite(),
     PostPhotoScreen(),
     // Chat(),
     HomePage(),
-    Center(
-      child: Text("Account"),
-    )
+    accountspage(),
   ];
 
   @override

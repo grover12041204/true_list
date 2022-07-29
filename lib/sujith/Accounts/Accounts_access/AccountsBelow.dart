@@ -3,6 +3,8 @@ import 'package:sizer/sizer.dart';
 import 'package:true_list/sujith/Accounts/Screens/myAds.dart';
 import 'package:true_list/sujith/Models/Constants.dart';
 
+import '../../../screens/account_settings/account_settings_screen.dart';
+
 class AccountsBelow extends StatelessWidget {
   const AccountsBelow({
     Key? key,
@@ -19,14 +21,24 @@ class AccountsBelow extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Acounts Settings", style: accountScreenTextStyle),
-                  accountScreenIcons(accountScreenIconsList[0])
-                ],
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AccountSettingScreen(),
+                  ),
+                );
+              },
+              child: Container(
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Acounts Settings", style: accountScreenTextStyle),
+                    accountScreenIcons(accountScreenIconsList[0])
+                  ],
+                ),
               ),
             ),
             DividerLine(),

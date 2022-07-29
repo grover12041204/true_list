@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
+import 'package:true_list/sujith/Models/Constants.dart';
 
 //Providers
 import '../providers/authentication_provider.dart';
@@ -59,12 +60,13 @@ class _ChatsPageState extends State<ChatsPage> {
         builder: (BuildContext _context) {
           _pageProvider = _context.watch<ChatsPageProvider>();
           return Container(
+            color: Colors.white,
             padding: EdgeInsets.symmetric(
               horizontal: _deviceWidth * 0.03,
               vertical: _deviceHeight * 0.02,
             ),
-            height: _deviceHeight * 0.98,
-            width: _deviceWidth * 0.97,
+            // height: _deviceHeight * 0.98,
+            // width: _deviceWidth * 0.97,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,

@@ -54,7 +54,7 @@ class _CardPortraitState extends State<CardPortrait> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 100.0, left: 3, right: 3),
+            padding: const EdgeInsets.only(top: 97.0, left: 3, right: 3),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -88,37 +88,39 @@ class _CardPortraitState extends State<CardPortrait> {
                   fontWeight: FontWeight.w700),
             ),
           ),
-          selected
-              ? GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 80.0, top: 10),
-                    child: FaIcon(
-                      FontAwesomeIcons.solidHeart,
-                      color: HexColor("#F50D0D"),
-                      size: 15,
+          widget.isAd
+              ? Container()
+              : selected
+                  ? GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 10),
+                        child: FaIcon(
+                          FontAwesomeIcons.solidHeart,
+                          color: HexColor("#F50D0D"),
+                          size: 15,
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selected = !selected;
+                        });
+                      },
+                    )
+                  : GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 80.0, top: 10),
+                        child: FaIcon(
+                          FontAwesomeIcons.heart,
+                          color: HexColor("#F3F3F4"),
+                          size: 15,
+                        ),
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selected = !selected;
+                        });
+                      },
                     ),
-                  ),
-                  onTap: () {
-                    setState(() {
-                      selected = !selected;
-                    });
-                  },
-                )
-              : GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 80.0, top: 10),
-                    child: FaIcon(
-                      FontAwesomeIcons.heart,
-                      color: HexColor("#F3F3F4"),
-                      size: 15,
-                    ),
-                  ),
-                  onTap: () {
-                    setState(() {
-                      selected = !selected;
-                    });
-                  },
-                ),
           widget.isPremium
               ? Container(
                   height: 12,

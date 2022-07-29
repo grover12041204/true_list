@@ -566,6 +566,7 @@ class _ProfileInfoState extends State<ProfileInfo> {
               InkWell(
                 onTap: () {
                   createProfile(context);
+                  _jsonData(context);
                 },
                 child: Container(
                   width: 349,
@@ -640,22 +641,56 @@ class _ProfileInfoState extends State<ProfileInfo> {
             _nameController.text,
             _imageURL!);
       }
-      if (decodeJsom["statusCode"] != 200) {
-        print(decodeJsom["statusCode"]);
-        print('4000');
-        showInSnackBarFinal('Invalid User', context);
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ),
-        );
-      }
+      // if (decodeJsom["statusCode"] != 200) {
+      //   print(decodeJsom["statusCode"]);
+      //   print('4000');
+      //   showInSnackBarFinal('Invalid User', context);
+      // } else {
+      // }
       print(response.body);
     } catch (e) {
       print('not working');
       print(e);
+    }
+  }
+
+  Map<String, String> requestHeaders1 = {
+    // 'Authorization':
+    //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX3Bob25lTnVtYmVyIjoiOTQ2MjQ0NTg5MyIsInVzZXJfSUQiOiI2MmRhNDNjYzE4MDkxNDZjMDRkM2UwZTgiLCJpYXQiOjE2NTg0NzY3MjIsImV4cCI6MTY1ODUxOTkyMn0.I48tRW_ka0CWvkKlKxkRZuI-dpiIA_XCvYRRBCWqlqk',
+    'Content-type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  _jsonData(BuildContext context) async {
+    try {
+      print('inside block');
+      var response = await http.post(
+          Uri.parse(
+            "https://deep-nucleus1.azurewebsites.net/api/v1/home?lat=26.898803&lng=78.390452&maxDistance=2000",
+          ),
+          headers: requestHeaders1);
+      var decodeJsom = jsonDecode(response.body);
+
+      globalPremiumadData = decodeJsom;
+      print(decodeJsom);
+      print(decodeJsom[0]['PremiumAds']);
+      print('data');
+      // return decodeJsom;
+      print(globalPremiumadData[0]['PremiumAds'][0]['_id']);
+      print(globalPremiumadData[0]);
+      print(globalPremiumadData[0]['RecentAds'][0]['image_url'][0]);
+      print(globalPremiumadData[0]['PremiumAds'][0]['image_url'][0]);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ),
+      );
+    } catch (e) {
+      print('not working');
+      print(e);
+      print('Grover is hungry');
+      // return e;
     }
   }
 }

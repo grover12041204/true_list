@@ -144,6 +144,7 @@ class OtpScreen extends StatelessWidget {
       userExistingMongo = decodeJsom['existingUser'];
       print(userExistingMongo);
       globalToken = decodeJsom['token'];
+      print(globalToken);
       if (decodeJsom["statusCode"] != 200) {
         print(decodeJsom["statusCode"]);
         print('4000');

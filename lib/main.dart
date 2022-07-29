@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import 'package:true_list/Chat/pages/home_page.dart';
 import 'package:true_list/Chat/pages/login_page.dart';
 import 'package:true_list/Chat/pages/register_page.dart';
@@ -66,32 +67,34 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<AuthenticationProvider>(
-          create: (BuildContext context) {
-            return AuthenticationProvider();
-          },
-        )
-      ],
-      child: MaterialApp(
-        title: 'True List',
-        // theme: ThemeData(
-        //   backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
-        //   scaffoldBackgroundColor: Color.fromARGB(255, 37, 35, 71),
-        //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        //     backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
-        //   ),
-        // ),
-        // navigatorKey: NavigationService.navigatorKey,
-        // initialRoute: '/login',
-        // routes: {
-        //   '/login': (context) => LoginPage(),
-        //   '/register': (context) => RegisterPage(),
-        //   '/home': (context) => HomePage(),
-        // },
-        home: checkiingButton(),
-      ),
-    );
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<AuthenticationProvider>(
+            create: (BuildContext context) {
+              return AuthenticationProvider();
+            },
+          )
+        ],
+        child: MaterialApp(
+          title: 'True List',
+          // theme: ThemeData(
+          //   backgroundColor: Color.fromRGBO(36, 35, 49, 1.0),
+          //   scaffoldBackgroundColor: Color.fromARGB(255, 37, 35, 71),
+          //   bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          //     backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
+          //   ),
+          // ),
+          // navigatorKey: NavigationService.navigatorKey,
+          // initialRoute: '/login',
+          // routes: {
+          //   '/login': (context) => LoginPage(),
+          //   '/register': (context) => RegisterPage(),
+          //   '/home': (context) => HomePage(),
+          // },
+          home: SignInScreen(),
+        ),
+      );
+    });
   }
 }

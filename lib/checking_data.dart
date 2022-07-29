@@ -46,7 +46,7 @@ class _checkiingButtonState extends State<checkiingButton> {
       print('inside block');
       var response = await http.post(
           Uri.parse(
-            "https://deep-nucleus1.azurewebsites.net/api/v1/home?lat=17.450877&lng=78.390452&maxDistance=2000",
+            "https://deep-nucleus1.azurewebsites.net/api/v1/home?lat=26.898803&lng=78.390452&maxDistance=2000",
           ),
           headers: requestHeaders);
       var decodeJsom = jsonDecode(response.body);

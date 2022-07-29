@@ -31,6 +31,7 @@ class _CardLandscapeState extends State<CardLandscape> {
       width: width * 0.18 * 2.5,
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
+        border: Border.all(width: 1, color: Colors.white),
         borderRadius: BorderRadius.circular(10),
         image: DecorationImage(
             image: NetworkImage(widget.image), fit: BoxFit.cover),
@@ -56,7 +57,7 @@ class _CardLandscapeState extends State<CardLandscape> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: height * 0.093, left: 3, right: 3),
+              padding: EdgeInsets.only(top: height * 0.108, left: 6, right: 5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -78,7 +79,7 @@ class _CardLandscapeState extends State<CardLandscape> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: height * 0.074, left: 1),
+              padding: EdgeInsets.only(top: height * 0.087, left: 1),
               child: Text(
                 "${widget.name}",
                 style: GoogleFonts.poppins(

@@ -1,10 +1,14 @@
 //Packages
 import 'package:flutter/material.dart';
+import 'package:true_list/sujith/Models/Constants.dart';
 
 //Pages
 import '../../sarthak/Home/home_screen.dart';
 import '../pages/chats_page.dart';
 import '../pages/users_page.dart';
+
+
+import 'package:sizer/sizer.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,7 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildUI();
+    return _buildUI2();
   }
 
   Widget _buildUI() {
@@ -99,4 +103,63 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _buildUI2() {
+     return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          actions: [
+            IconButton(onPressed: () => null, icon: Icon(Icons.logout)),
+          ],
+          title: Text("Chats"),
+            leading: IconButton(
+              onPressed: Navigator.of(context).pop,
+               icon: Icon(Icons.arrow_back)),
+          backgroundColor: appBackGroundcolor,
+          // centerTitle: true,
+          elevation: 0.0,
+        
+        ),
+        body:Container(
+          color: appBackGroundcolor,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(3.5.w),
+                topRight: Radius.circular(3.5.w),
+              ),
+            ),
+            child: Column(
+              children:[
+                Container(
+                  child: TabBar(tabs: [
+                   Tab(
+                    icon: Icon(Icons.chat_bubble_sharp,),
+                    text: "Buying"
+                    ),
+                    Tab(
+                    icon: Icon(Icons.supervised_user_circle_sharp,),
+                    text: "Selling"),
+                  ],
+                  labelColor: appBackGroundcolor,
+                  indicatorColor: appBackGroundcolor,
+                  ),
+                ),
+
+                Expanded(child: TabBarView(children: [
+                   ChatsPage(),
+                   UsersPage(),
+                ]),)
+              ]
+            ),
+          )
+        )
+        ),
+    );
+ 
 }
+}
+

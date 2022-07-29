@@ -1,6 +1,7 @@
 //Packages
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:true_list/sujith/Models/Constants.dart';
 
 //Widgets
 import '../widgets/rounded_image.dart';
@@ -9,6 +10,8 @@ import '../widgets/message_bubbles.dart';
 //Models
 import '../models/chat_message.dart';
 import '../models/chat_user.dart';
+
+import 'package:sizer/sizer.dart';
 
 class CustomListViewTile extends StatelessWidget {
   final double height;
@@ -37,14 +40,15 @@ class CustomListViewTile extends StatelessWidget {
       minVerticalPadding: height * 0.20,
       leading: RoundedImageNetworkWithStatusIndicator(
         key: UniqueKey(),
-        size: height / 2,
+        size: height /2,
         imagePath: imagePath,
         isActive: isActive,
       ),
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+        color: appBackGroundcolor,
+          // color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
@@ -52,7 +56,8 @@ class CustomListViewTile extends StatelessWidget {
       subtitle: Text(
         subtitle,
         style: TextStyle(
-          color: Colors.white54,
+          color: appBackGroundcolor,
+          // color: Colors.white54,
           fontSize: 12,
           fontWeight: FontWeight.w400,
         ),
@@ -82,42 +87,48 @@ class CustomListViewTileWithActivity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      onTap: () => onTap(),
-      minVerticalPadding: height * 0.20,
-      leading: RoundedImageNetworkWithStatusIndicator(
-        key: UniqueKey(),
-        size: height / 2,
-        imagePath: imagePath,
-        isActive: isActive,
-      ),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.w500,
+    return Container(
+      
+      child: ListTile(
+        // trailing: isActivity ? Icon(Icons.fiber_manual_record, color: Colors.green,size: 3.w,) : null,
+        onTap: () => onTap(),
+        minVerticalPadding: height * 0.20,
+        leading: RoundedImageNetworkWithStatusIndicator(
+          key: UniqueKey(),
+          size: height / 2,
+          imagePath: imagePath,
+          isActive: isActive,
         ),
+        title: Text(
+          title,
+          style: TextStyle(
+            //  color: Colors.white,
+
+            fontSize: 18,
+             fontWeight: FontWeight.w500,
+          ),
+        ),
+        
+        subtitle: isActivity
+            ? Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SpinKitThreeBounce(
+                    color: appBackGroundcolor,
+                    size: height * 0.10,
+                  ),
+                ],
+              )
+            : Text(
+                subtitle,
+                style: TextStyle(
+                    // color: Colors.white54,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400),
+              ),
       ),
-      subtitle: isActivity
-          ? Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SpinKitThreeBounce(
-                  color: Colors.white54,
-                  size: height * 0.10,
-                ),
-              ],
-            )
-          : Text(
-              subtitle,
-              style: TextStyle(
-                  color: Colors.white54,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400),
-            ),
     );
   }
 }
@@ -148,11 +159,14 @@ class CustomChatListViewTile extends StatelessWidget {
             isOwnMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
+          SizedBox(width: 1.w,),
           !isOwnMessage
               ? RoundedImageNetwork(
                   key: UniqueKey(),
                   imagePath: sender.imageURL,
-                  size: width * 0.08)
+                  // size: width * 0.08
+                  size: 8.w,
+                  )
               : Container(),
           SizedBox(
             width: width * 0.05,
@@ -170,6 +184,16 @@ class CustomChatListViewTile extends StatelessWidget {
                   height: deviceHeight * 0.30,
                   width: width * 0.55,
                 ),
+          // SizedBox(width: 1.w,),
+          isOwnMessage
+              ? RoundedImageNetwork(
+                  key: UniqueKey(),
+                  imagePath: sender.imageURL,
+                  // size: width * 0.08
+                  size: 8.w
+                  )
+              : Container(),
+               SizedBox(width: 1.w,),
         ],
       ),
     );

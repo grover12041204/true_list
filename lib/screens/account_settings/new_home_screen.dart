@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:true_list/color.dart';
+import 'package:true_list/sujith/Accounts/buy_credits/category_BottomSheet.dart';
 
 import '../../global_variables.dart';
 
@@ -35,7 +36,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appColors.newHomeScreenBackground,
+      // backgroundColor: appColors.newHomeScreenBackground,
       body: Container(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -489,74 +490,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                       );
                       // Divider(thickness: 0.8);
                     })
-                // Column(
-                // children: [
-                //   SizedBox(height: 15),
-                //   Row(
-                //     children: [
-                //       Text(
-                //         'Category',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: appColors.greyTextColor,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //       Spacer(),
-                //       Text(
-                //         'Pets',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: Colors.black,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                //   Divider(thickness: 0.8),
-                //   Row(
-                //     children: [
-                //       Text(
-                //         'Category',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: appColors.greyTextColor,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //       Spacer(),
-                //       Text(
-                //         'Pets',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: Colors.black,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                //   Divider(thickness: 0.8),
-                //   Row(
-                //     children: [
-                //       Text(
-                //         'Breed',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: appColors.greyTextColor,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //       Spacer(),
-                //       Text(
-                //         'Dogs',
-                //         style: TextStyle(
-                //           fontWeight: FontWeight.w500,
-                //           color: Colors.black,
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
+
                 //   Divider(thickness: 0.8),
                 //   Row(
                 //     children: [
@@ -628,22 +562,78 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                 ),
               ),
             ),
-            InkWell(
-              child: Container(
-                  height: 50,
-                  alignment: Alignment.center,
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: appColors.darkBlue,
-                  ),
-                  child: Text(
-                    'Post',
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600),
-                  )),
+            Row(
+              children: [
+                SizedBox(width: 20),
+                CircleAvatar(radius: 16),
+                SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      child: Text(
+                        globalGetHomeScreen['AdDetails'][0]['reported_by']
+                            ['user_id'],
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      globalGetHomeScreen['AdDetails'][0]['reported_by']
+                          ['report_date'],
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.arrow_right_outlined),
+                ),
+                SizedBox(width: 20),
+              ],
+            ),
+            SizedBox(height: 15),
+            Row(
+              children: [
+                InkWell(
+                  child: Container(
+                      height: 50,
+                      width: 300,
+                      alignment: Alignment.center,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: appColors.darkBlue,
+                      ),
+                      child: Text(
+                        'Make offer',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600),
+                      )),
+                ),
+                Container(
+                    height: 50,
+                    width: 50,
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: appColors.darkBlue,
+                    ),
+                    child: Icon(
+                      Icons.chat_bubble_outline,
+                      color: Colors.white,
+                    )),
+              ],
             ),
             SizedBox(height: 50),
             SizedBox(height: 90)

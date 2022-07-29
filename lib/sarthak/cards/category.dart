@@ -3,12 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class Categorywidget extends StatefulWidget {
-  const Categorywidget({Key? key,required this.image_name,required this.name,required this.height,required this.width}) : super(key: key);
+  const Categorywidget({Key? key, required this.image_name, required this.name})
+      : super(key: key);
 
   final String image_name;
   final String name;
-  final double height;
-  final double width;
+  // final double height;
+  // final double width;
 
   @override
   State<Categorywidget> createState() => _CategorywidgetState();
@@ -19,7 +20,8 @@ class _CategorywidgetState extends State<Categorywidget> {
   Widget build(BuildContext context) {
     return Container(
       width: 90,
-      height: 80,
+      constraints: BoxConstraints(minHeight: 80, maxHeight: 120),
+      // height: 80,
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
@@ -28,9 +30,22 @@ class _CategorywidgetState extends State<Categorywidget> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Image.asset("assets/images/${widget.image_name}.png",fit: BoxFit.contain,height: widget.height,width: widget.width,),
-          SizedBox(height: 5,),
-          Text("${widget.name}",style: GoogleFonts.poppins(color: Colors.black,fontSize: 12,fontWeight: FontWeight.w500),)
+          Image.asset(
+            "assets/images/${widget.image_name}.png",
+            fit: BoxFit.contain,
+            height: 50,
+            width: 50,
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            widget.name.length > 10
+                ? '${widget.name.substring(0, 10)}...'
+                : "${widget.name}",
+            style: GoogleFonts.poppins(
+                color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500),
+          )
         ],
       ),
     );
